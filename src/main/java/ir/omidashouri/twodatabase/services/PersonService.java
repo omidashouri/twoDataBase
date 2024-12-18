@@ -3,8 +3,10 @@ package ir.omidashouri.twodatabase.services;
 import ir.omidashouri.twodatabase.entity.oracle.Person;
 import ir.omidashouri.twodatabase.repository.oracle.PersonRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +25,6 @@ public class PersonService {
         newPerson.setName(person.getName());
         newPerson.setAge(person.getAge());
         Person savedPerson = personRepository.save(person);
-        personRepository.flush();
         return savedPerson;
     }
 

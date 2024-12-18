@@ -3,10 +3,13 @@ package ir.omidashouri.twodatabase.config;
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
+import org.springframework.context.annotation.Configuration;
 
 import static com.google.common.base.CaseFormat.*;
 
-public class SnakeCaseNamingStrategy extends PhysicalNamingStrategyStandardImpl {
+
+public class SnakeCaseNamingStrategy {
+/*extends PhysicalNamingStrategyStandardImpl {
 
     public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
         return new Identifier(
@@ -20,5 +23,5 @@ public class SnakeCaseNamingStrategy extends PhysicalNamingStrategyStandardImpl 
                 LOWER_CAMEL.to(LOWER_UNDERSCORE, name.getText()),
                 name.isQuoted()
         );
-    }
+    }*/
 }
