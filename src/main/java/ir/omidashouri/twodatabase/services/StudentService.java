@@ -3,11 +3,13 @@ package ir.omidashouri.twodatabase.services;
 import ir.omidashouri.twodatabase.entity.postgres.Student;
 import ir.omidashouri.twodatabase.repository.postgres.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StudentService {
     
     private final StudentRepository studentRepository;

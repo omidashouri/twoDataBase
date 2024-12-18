@@ -2,20 +2,21 @@ package ir.omidashouri.twodatabase.services;
 
 import ir.omidashouri.twodatabase.entity.oracle.Person;
 import ir.omidashouri.twodatabase.repository.oracle.PersonRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Transactional(transactionManager = "transactionManagerOracle")
 public class PersonService {
 
     private final PersonRepository personRepository;
-
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
