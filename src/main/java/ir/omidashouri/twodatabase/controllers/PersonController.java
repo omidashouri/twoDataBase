@@ -22,6 +22,12 @@ public class PersonController {
         return person1;
     }
 
+    @PutMapping
+    public Person updatePerson(@RequestBody Person person) {
+        Person person1 = personService.updatePerson(person);
+        return person1;
+    }
+
     @DeleteMapping("/{id}")
     public void erasePerson(@PathVariable Long id) {
         personService.erasePerson(id);

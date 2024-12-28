@@ -29,6 +29,10 @@ public class PersonService {
         return savedPerson;
     }
 
+    public Person updatePerson(Person person) {
+        return personRepository.save(person);
+    }
+
     public void erasePerson(Long id) {
         Optional<Person> person = personRepository.findById(id);
         person.ifPresent(personRepository::delete);

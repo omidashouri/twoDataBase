@@ -2,14 +2,20 @@ package ir.omidashouri.twodatabase.entity.oracle;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ir.omidashouri.twodatabase.entity.Auditor;
 import ir.omidashouri.twodatabase.model.Status;
 import ir.omidashouri.twodatabase.model.StatusConverter;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.sql.Date;
 
 @Entity
 @Table(name = "TBL_PERSON",schema = "admin")
-public class Person {
+public class Person extends Auditor<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
@@ -33,10 +39,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long id, String name, Integer age) {
+    public Person(Long id, String name, Integer age, Status status) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.status = status;
     }
 
     public Long getId() {
