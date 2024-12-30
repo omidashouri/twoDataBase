@@ -1,7 +1,7 @@
 package ir.omidashouri.twodatabase.controllers;
 
 import ir.omidashouri.twodatabase.entity.oracle.Person;
-import ir.omidashouri.twodatabase.services.PersonService;
+import ir.omidashouri.twodatabase.services.PersonServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/api/persons")
 public class PersonController {
 
-    private final PersonService personService;
+    private final PersonServiceImpl personService;
 
-    public PersonController(PersonService personService) {
+    public PersonController(PersonServiceImpl personService) {
         this.personService = personService;
     }
 
@@ -37,5 +37,10 @@ public class PersonController {
     public List<Person> getPersons(){
         List<Person> persons = personService.getPersons();
         return persons;
+    }
+
+    @GetMapping("/greeting/{name}")
+    public String getGreeting(@PathVariable String name) {
+        return personService.getGreeting(name);
     }
 }
