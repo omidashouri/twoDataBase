@@ -6,15 +6,18 @@ import ir.omidashouri.twodatabase.entity.Auditor;
 import ir.omidashouri.twodatabase.model.Status;
 import ir.omidashouri.twodatabase.model.StatusConverter;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import validators.AgeValidation;
 
-import java.sql.Date;
-
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "TBL_PERSON",schema = "admin")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person extends Auditor<String> {
 
     @Id
@@ -28,6 +31,7 @@ public class Person extends Auditor<String> {
     @Column(name = "NAME")
     private String name;
 
+    @AgeValidation(message = "Value must be greater than 15")
     @JsonProperty("age")
     @Column(name = "AGE")
     private Integer age;
@@ -36,45 +40,4 @@ public class Person extends Auditor<String> {
     @Convert(converter = StatusConverter.class)
     private Status status;
 
-    public Person() {
-    }
-
-    public Person(Long id, String name, Integer age, Status status) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 }

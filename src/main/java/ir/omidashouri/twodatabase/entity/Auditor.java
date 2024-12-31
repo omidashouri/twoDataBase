@@ -2,25 +2,25 @@ package ir.omidashouri.twodatabase.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ir.omidashouri.twodatabase.helper.PersianDateSerializer;
-import ir.omidashouri.twodatabase.utils.DatePattern;
 import ir.omidashouri.twodatabase.utils.DateUtils;
-import ir.omidashouri.twodatabase.utils.LocaleUtils;
 import ir.omidashouri.twodatabase.utils.TimeZoneId;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.Locale;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class Auditor<U> {
 
     @Column(name = "creator", updatable = false)
@@ -53,38 +53,6 @@ public abstract class Auditor<U> {
     @PreUpdate
     protected void onUpdate() {
         editDate = DateUtils.getDateForZonedDateTime(TimeZoneId.ASIA_TEHRAN.toZoneId());
-    }
-
-    public U getCreator() {
-        return creator;
-    }
-
-    public void setCreator(U creator) {
-        this.creator = creator;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public U getEditor() {
-        return editor;
-    }
-
-    public void setEditor(U editor) {
-        this.editor = editor;
-    }
-
-    public Date getEditDate() {
-        return editDate;
-    }
-
-    public void setEditDate(Date editDate) {
-        this.editDate = editDate;
     }
 
 /*    private String formatDate(Date date) {

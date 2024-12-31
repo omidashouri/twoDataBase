@@ -2,6 +2,7 @@ package ir.omidashouri.twodatabase.controllers;
 
 import ir.omidashouri.twodatabase.entity.oracle.Person;
 import ir.omidashouri.twodatabase.services.PersonServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class PersonController {
     }
 
     @PutMapping
-    public Person updatePerson(@RequestBody Person person) {
+    public Person updatePerson(@RequestBody @Valid Person person) {
         Person person1 = personService.updatePerson(person);
         return person1;
     }
